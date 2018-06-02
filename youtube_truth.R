@@ -11,9 +11,9 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 
-search <- args[1]
+search <- ""#args[1]
 
-number.of.vids <- args[2]
+number.of.vids <- 75 #args[2]
 
 
 library(RSelenium)
@@ -22,9 +22,9 @@ library(tidyverse)
 # Set up
 driver <- rsDriver(browser = c("chrome"))
 remDr <- driver[["client"]]
-remDr$navigate(paste0("https://www.youtube.com/results?search_query=",search))
+#remDr$navigate(paste0("https://www.youtube.com/results?search_query=",search))
 # alternativley, to start from the first suggested youtube vid, use this:
-# remDr$navigate("https://www.youtube.com")
+remDr$navigate("https://www.youtube.com")
 Sys.sleep(2)
 
 # Create data frame to append all the titles to
@@ -50,15 +50,16 @@ while (i < number.of.vids) {
   # Next vid
   remDr$sendKeysToActiveElement(list(key = "shift", "N"))
   i = i + 1
-  Sys.sleep(sample(seq(3, 15, 1), 1))
+  Sys.sleep(sample(seq(7, 15, 1), 1))
 }
 
 write.csv(all.titles, paste0("C:\\Users\\XPS\\Desktop\\",
                              gsub(pattern = ":", replacement = "_",
                                   gsub(pattern = " ", replacement = "_", Sys.time())), 
                              search,
+                             "_",
                              number.of.vids,
-                             "_vids",
+                             "vids",
                              ".csv")
 )
 
