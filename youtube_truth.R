@@ -56,7 +56,7 @@ search.vids <- function(search, number.of.vids) {
     )
     
     remDr$close()
-
+    paste("All done! Ran search term ",search , " ", number.of.vids, " times.")
 }
 
 start.fresh <- function(number.of.vids) {
@@ -101,7 +101,7 @@ start.fresh <- function(number.of.vids) {
     )
     
     remDr$close()
-  
+    paste("All done! Ran the first Youtube suggestion through the autosuggest ", number.of.vids, " times.")
 }
 
 search.vids.x.times <- function(search, number.of.vids, number.of.iterations) {
