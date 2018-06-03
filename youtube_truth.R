@@ -1,14 +1,17 @@
-###################
-#### LIBRARIES ####
-###################
+# LIBRARIES ####
 
 library(RSelenium)
 library(tidyverse)
 
-###################
-##### DEFINE ######
-###### FNS ########
-###################
+# RSELENIUM INSTALL ISSUES ####
+
+# If you have difficulty installing RSelenium from CRAN, try installing with Devtools:
+# install.packages("devtools") 
+# devtools::install_github("johndharrison/binman")
+# devtools::install_github("johndharrison/wdman")
+# devtools::install_github("ropensci/RSelenium")
+
+# DEFINE FNS ####
 
 search.vids <- function(search, number.of.vids) {
     # function that allows you to enter a search term in quotation and specify the number of vids you want it to cycle through
@@ -123,3 +126,13 @@ fresh.vids.x.times <- function(number.of.vids, number.of.iterations) {
   
   paste("All done! Ran ", number.of.iterations, " iterations")
 }
+
+
+
+
+
+
+
+
+
+
