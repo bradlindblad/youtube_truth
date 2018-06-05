@@ -13,8 +13,17 @@ library(tidyverse)
 
 # DEFINE FNS ####
 
-search.vids <- function(search, number.of.vids) {
-    # function that allows you to enter a search term in quotation and specify the number of vids you want it to cycle through
+SearchVids <- function(search, number.of.vids) {
+    # Allows you to enter a search term in quotation and specify the number of vids you want it to cycle through
+    # 
+    # Args:
+    #   search: Search term to be used
+    #   number.of.vids: How many videos should be ran through
+    #
+    # Returns:
+    #   A CSV file that lists the titles of the videos ran through
+    #
+  
     # Set up
     driver <- rsDriver(browser = c("chrome"))
     remDr <- driver[["client"]]
@@ -59,8 +68,17 @@ search.vids <- function(search, number.of.vids) {
     paste("All done! Ran search term ",search , " ", number.of.vids, " times.")
 }
 
-start.fresh <- function(number.of.vids) {
-    # function that starts with a fresh Chrome session and iterates through whatever vids Youtube recommends
+StartFresh <- function(number.of.vids) {
+    # Starts with a fresh Chrome session and iterates through whatever vids Youtube recommends
+    # 
+    # Args:
+    #   number.of.vids: How many videos should be ran through
+    #
+    # Returns:
+    #   A CSV file that lists the titles of the videos ran through
+    #
+  
+  
     # Set up
     driver <- rsDriver(browser = c("chrome"))
     remDr <- driver[["client"]]
@@ -104,11 +122,21 @@ start.fresh <- function(number.of.vids) {
     paste("All done! Ran the first Youtube suggestion through the autosuggest ", number.of.vids, " times.")
 }
 
-search.vids.x.times <- function(search, number.of.vids, number.of.iterations) {
-  # iterates through the search.vids function n number of times, for gathering empirical data
+SearchVidsXTimes <- function(search, number.of.vids, number.of.iterations) {
+  # Iterates through the SearchVids function n number of times, for gathering empirical data
+  # 
+  # Args:
+  #   search: Search term to be used
+  #   number.of.vids: How many videos should be ran through
+  #   number.of.iterations: How many times to run through this process
+  #
+  # Returns:
+  #   Multiple CSV files that list the titles of the videos ran through in each iteration
+  #
+  
   i <- 0
   while (i < number.of.iterations) {
-    search.vids(search, number.of.vids)
+    SearchVids(search, number.of.vids)
     i <- i + 1
     
   }
@@ -116,11 +144,20 @@ search.vids.x.times <- function(search, number.of.vids, number.of.iterations) {
   paste("All done! Ran ", number.of.iterations, " iterations")
 }
 
-fresh.vids.x.times <- function(number.of.vids, number.of.iterations) {
-  # iterates through the start.fresh function n number of times, for gathering empirical data
+FreshVidsXTimes <- function(number.of.vids, number.of.iterations) {
+  # Iterates through the StartFresh function n number of times, for gathering empirical data
+  # 
+  # Args:
+  #   number.of.vids: How many videos should be ran through
+  #   number.of.iterations: How many times to run through this process
+  #
+  # Returns:
+  #   Multiple CSV files that list the titles of the videos ran through in each iteration
+  #
+  
   i <- 0
   while (i < number.of.iterations) {
-    start.fresh(number.of.vids)
+    StartFresh(number.of.vids)
     i <- i + 1
   }
   
